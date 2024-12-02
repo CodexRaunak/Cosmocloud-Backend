@@ -12,6 +12,11 @@ def serialize_student(student: dict) -> dict:
     student.pop("_id", None)  # Remove the original `_id` field (optional)
     return student
 
+
+@router.get("/") 
+async def read_root():
+    return {"message": "Welcome to the Student Management System!"}
+
 @router.post("/students", status_code=status.HTTP_201_CREATED)
 async def create_student(student: Student):
     student_data = student.model_dump()
